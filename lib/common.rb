@@ -80,7 +80,7 @@ class RemediationBuilder
   def handle_exception(druid:, exception:)
     raise exception unless handle_exceptions?
 
-    logger.error("#{druid}: #{e}")
+    logger.error("#{druid}: #{exception}")
     report.error_count += 1
   end
 
