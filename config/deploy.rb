@@ -35,4 +35,4 @@ set :linked_dirs, %w(log vendor/bundle config/settings)
 set :linked_files, %w()
 
 # update shared_configs before restarting app
-before 'deploy:restart', 'shared_configs:symlink'
+before 'deploy:symlink:release', 'shared_configs:symlink'
