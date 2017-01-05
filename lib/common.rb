@@ -9,7 +9,8 @@ class RemediationBuilder
 
   def initialize
     @error_handling = true
-    @report = Struct.new(:error_count, :success_count).new(0, 0)
+    @report = Struct.new(:error_count, :success_count, :skipped_count).new(0, 0, 0)
+    @condition = proc { true }
   end
 
   def without_error_handling!
@@ -25,11 +26,25 @@ class RemediationBuilder
     druids.each_with_index do |druid, i|
       begin
         logger.debug("#{i}: #{druid}")
-        Docile.dsl_eval(ObjectBuilder.new(druid), &block).build
-        report.success_count += 1
+        obj = ObjectBuilder.new(druid)
+
+        if condition.call(obj)
+          Docile.dsl_eval(obj, &block).build
+          report.success_count += 1
+        else
+          report.skipped_count += 1
+        end
       rescue => exception
         handle_exception(druid: druid, exception: exception)
       end
+    end
+  end
+
+  def condition(&block)
+    if block_given?
+      @condition = block
+    else
+      @condition
     end
   end
 

@@ -5,6 +5,13 @@ remediate do
   verbose!
   without_error_handling!
 
+  # Only process records with missing or non-unique resource ids
+  condition do |obj|
+    ids = obj.contentMetadata.ng_xml.xpath('//resource/@id').map { |id| id.to_s }
+
+    ids.any? { |id| id.nil? || id.empty? } || ids.length != ids.uniq.length
+  end
+
   each_druid do
     open_new_version
     
