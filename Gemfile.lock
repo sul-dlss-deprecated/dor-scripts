@@ -1,4 +1,5 @@
 GEM
+  remote: https://rubygems.org/
   specs:
     active-fedora (8.3.0)
       active-triples (~> 0.4.0)
