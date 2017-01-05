@@ -1,4 +1,5 @@
 gem 'dor-services'
+gem 'workflow-archiver', '~> 2.0'
 gem 'docile'
 gem 'config'
 

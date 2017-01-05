@@ -150,6 +150,9 @@ GEM
       rdf-xsd (~> 1.1, >= 1.1.5)
       sparql (~> 1.99)
       sparql-client (~> 1.99)
+    lyber-core (4.1.0)
+      activesupport
+      dor-workflow-service (>= 1.7, < 3)
     lyber-utils (0.1.2)
       bagit (>= 0.1.0)
       nokogiri (>= 1.4.3.1)
@@ -272,6 +275,7 @@ GEM
       nokogiri
       rest-client
     rubyzip (1.2.0)
+    sequel (4.42.0)
     solrizer (3.4.0)
       activesupport
       daemons
@@ -312,6 +316,11 @@ GEM
     unf_ext (0.0.7.2)
     uuidtools (2.1.5)
     validatable (1.6.7)
+    workflow-archiver (2.0.1)
+      confstruct
+      faraday
+      lyber-core
+      sequel
     xml-simple (1.1.5)
 
 PLATFORMS
@@ -324,6 +333,7 @@ DEPENDENCIES
   dlss-capistrano
   docile
   dor-services
+  workflow-archiver (~> 2.0)
 
 BUNDLED WITH
    1.13.6
