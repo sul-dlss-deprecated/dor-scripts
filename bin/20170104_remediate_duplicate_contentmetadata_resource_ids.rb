@@ -16,4 +16,6 @@ remediate do
     save!
     close_version
   end
+
+  puts report.inspect
 end

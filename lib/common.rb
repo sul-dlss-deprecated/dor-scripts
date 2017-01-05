@@ -5,8 +5,11 @@ def remediate(&block)
 end
 
 class RemediationBuilder
+  attr_reader :report
+
   def initialize
     @error_handling = true
+    @report = Struct.new(:error_count, :success_count).new(0, 0)
   end
 
   def without_error_handling!
@@ -23,12 +26,9 @@ class RemediationBuilder
       begin
         logger.debug("#{i}: #{druid}")
         Docile.dsl_eval(ObjectBuilder.new(druid), &block).build
-      rescue => e
-        if @error_handling
-          logger.error("#{i}: #{druid}: #{e}")
-        else
-          raise e
-        end
+        report.success_count += 1
+      rescue => exception
+        handle_exception(druid: druid, exception: exception)
       end
     end
   end
@@ -50,10 +50,22 @@ class RemediationBuilder
   end
 
   def build
+    report
   end
+
+  private
 
   def logger
     @logger ||= Logger.new(STDERR)
+  end
+
+  def handle_exception(druid:, exception:)
+    if @error_handling
+      logger.error("#{druid}: #{e}")
+      report.error_count += 1
+    else
+      raise exception
+    end
   end
 end
 
