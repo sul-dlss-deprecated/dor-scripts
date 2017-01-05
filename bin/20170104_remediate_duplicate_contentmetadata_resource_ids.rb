@@ -33,15 +33,14 @@ remediate do
   end
 
   each_druid do
-    open_new_version 
+    with_versioning significance: :admin, description: 'Use unique resource ids' do
+      contentMetadata.ng_xml_will_change!
+      contentMetadata.ng_xml.xpath('//resource').each_with_index do |r, i|
+        r.attributes['id'].value = "#{bare_druid}_#{i + 1}"
+      end
 
-    contentMetadata.ng_xml_will_change!
-    contentMetadata.ng_xml.xpath('//resource').each_with_index do |r, i|
-      r.attributes['id'].value = "#{bare_druid}_#{i + 1}"
+      save!
     end
-
-    save!
-    close_version significance: :admin, description: 'Use unique resource ids'
   end
 
   puts report.inspect

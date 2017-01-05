@@ -95,6 +95,7 @@ class ObjectBuilder
 
   def initialize(druid)
     @druid = druid
+    @opened = false
   end
 
   def object
@@ -103,6 +104,24 @@ class ObjectBuilder
 
   def bare_druid
     object.remove_druid_prefix
+  end
+
+  def with_versioning(*args)
+    open_version!
+    yield
+    close_version_if_opened!(*args)
+  end
+
+  def open_version!(*args)
+    return unless Dor::Config.workflow.client.get_lifecycle('dor', pid, 'accessioned')
+    return if object.new_version_open?
+    return if Dor::Config.workflow.client.get_active_lifecycle('dor', pid, 'submitted')
+    object.open_new_version(*args)
+    @opened = true
+  end
+
+  def close_version_if_opened!(*args)
+    object.close_version(*args) if @opened
   end
 
   def respond_to_missing?(method, *_args)
