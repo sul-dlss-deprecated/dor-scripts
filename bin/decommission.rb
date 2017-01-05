@@ -1,9 +1,7 @@
 #!/usr/bin/env ruby
 require_relative '../boot.rb'
-require 'optparse'
 
-Options = Struct.new(:tag)
-args = Options.new
+args = Struct.new(:tag).new
 
 OptionParser.new do |opts|
   opts.banner = "Usage: decommision.rb [options] [FILE]"
