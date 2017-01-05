@@ -56,9 +56,9 @@ class RemediationBuilder
 
     ARGF.each_line do |druid|
       if druid =~ /^druid:/
-        yield druid
+        yield druid.strip
       else
-        yield "druid:#{druid}"
+        yield "druid:#{druid.strip}"
       end
     end
   end
