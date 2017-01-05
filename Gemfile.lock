@@ -54,7 +54,7 @@ GEM
       capistrano (~> 3.0)
     capistrano-releaseboard (0.0.1)
       faraday
-    capistrano-shared_configs (0.1.1)
+    capistrano-shared_configs (0.1.2)
     concurrent-ruby (1.0.4)
     config (1.4.0)
       activesupport (>= 3.0)
@@ -289,7 +289,7 @@ GEM
       rest-client
     rubyzip (1.2.0)
     sequel (4.42.0)
-    solrizer (3.4.0)
+    solrizer (3.4.1)
       activesupport
       daemons
       nokogiri
