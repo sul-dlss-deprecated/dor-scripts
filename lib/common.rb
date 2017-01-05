@@ -7,28 +7,40 @@ end
 class RemediationBuilder
   def initialize
     @error_handling = true
-    @verbose = false
   end
 
   def without_error_handling!
     @error_handling = false
   end
-  
+
   def verbose!
+    logger.level = Logger::DEBUG
     @verbose = true
   end
 
   def each_druid(&block)
-    ARGF.each_line do |druid|
+    druids.each_with_index do |druid, i|
       begin
-        STDERR.puts("#{druid}") if verbose?
+        logger.debug("#{i}: #{druid}")
         Docile.dsl_eval(ObjectBuilder.new(druid), &block).build
       rescue => e
         if @error_handling
-          STDERR.puts("#{druid}: #{e}")
+          logger.error("#{i}: #{druid}: #{e}")
         else
           raise e
         end
+      end
+    end
+  end
+
+  def druids
+    return to_enum(:druids) unless block_given?
+
+    ARGF.each_line do |druid|
+      if druid =~ /^druid:/
+        yield druid
+      else
+        yield "druid:#{druid}"
       end
     end
   end
@@ -39,6 +51,10 @@ class RemediationBuilder
 
   def build
   end
+
+  def logger
+    @logger ||= Logger.new(STDERR)
+  end
 end
 
 class ObjectBuilder
@@ -47,15 +63,15 @@ class ObjectBuilder
   def initialize(druid)
     @druid = druid
   end
-  
+
   def object
     @object ||= Dor.find(druid)
   end
-  
+
   def bare_druid
     object.remove_druid_prefix
   end
-  
+
   def respond_to_missing?(method, *args)
     object.respond_to? method
   end
