@@ -1,0 +1,13 @@
+inherit_from: .rubocop_todo.yml
+
+Metrics/LineLength:
+  Max: 120
+  Exclude:
+    - 'config/**'
+    - 'lib/dor_config.rb'
+
+# Offense count: 1
+# Configuration parameters: CountComments.
+Metrics/BlockLength:
+  Exclude:
+  - 'lib/dor_config.rb'

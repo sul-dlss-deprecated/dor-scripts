@@ -4,17 +4,18 @@ def remediate(&block)
   Docile.dsl_eval(RemediationBuilder.new, &block).build
 end
 
+# Common remediation task DSL
 class RemediationBuilder
   attr_reader :report
 
   def initialize
-    @error_handling = true
+    @exception_handling = true
     @report = Struct.new(:error_count, :success_count, :skipped_count).new(0, 0, 0)
     @condition = proc { true }
   end
 
-  def without_error_handling!
-    @error_handling = false
+  def without_exception_handling!
+    @exception_handling = false
   end
 
   def verbose!
@@ -22,6 +23,7 @@ class RemediationBuilder
     @verbose = true
   end
 
+  # rubocop:disable Metrics/MethodLength
   def each_druid(&block)
     druids.each_with_index do |druid, i|
       begin
@@ -39,6 +41,7 @@ class RemediationBuilder
       end
     end
   end
+  # rubocop:enable Metrics/MethodLength
 
   def condition(&block)
     if block_given?
@@ -75,15 +78,18 @@ class RemediationBuilder
   end
 
   def handle_exception(druid:, exception:)
-    if @error_handling
-      logger.error("#{druid}: #{e}")
-      report.error_count += 1
-    else
-      raise exception
-    end
+    raise exception unless handle_exceptions?
+
+    logger.error("#{druid}: #{e}")
+    report.error_count += 1
+  end
+
+  def handle_exceptions?
+    @exception_handling
   end
 end
 
+# Object-specific remediation tasks DSL
 class ObjectBuilder
   attr_reader :druid
 
@@ -99,10 +105,10 @@ class ObjectBuilder
     object.remove_druid_prefix
   end
 
-  def respond_to_missing?(method, *args)
+  def respond_to_missing?(method, *_args)
     object.respond_to? method
   end
-  
+
   def method_missing(method, *args, &block)
     if object.respond_to? method
       object.public_send(method, *args, &block)
@@ -110,7 +116,6 @@ class ObjectBuilder
       super
     end
   end
-  
-  def build
-  end
+
+  def build; end
 end

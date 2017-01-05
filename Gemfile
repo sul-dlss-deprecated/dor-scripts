@@ -1,7 +1,14 @@
+gem 'config'
+gem 'docile'
+
 gem 'dor-services'
 gem 'workflow-archiver', '~> 2.0'
-gem 'docile'
-gem 'config'
+
+gem 'rake'
+
+group :test do
+  gem 'rubocop'
+end
 
 group :deployment do
   gem 'capistrano'

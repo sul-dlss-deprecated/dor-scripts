@@ -23,7 +23,7 @@ end.parse!
 
 remediate do
   verbose!
-  without_error_handling!
+  without_exception_handling!
 
   # Only process records with missing or non-unique resource ids
   condition do |obj|

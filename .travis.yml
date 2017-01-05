@@ -1,0 +1,9 @@
+language: ruby
+# caches gems between builds
+cache: bundler
+sudo: false
+notifications:
+  email: false
+
+rvm:
+  - 2.4.0
