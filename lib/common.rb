@@ -23,25 +23,26 @@ class RemediationBuilder
     @verbose = true
   end
 
-  # rubocop:disable Metrics/MethodLength
+  # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
   def each_druid(&block)
     druids.each_with_index do |druid, i|
       begin
-        logger.debug("#{i}: #{druid}")
         obj = ObjectBuilder.new(druid)
 
         if condition.call(obj)
+          logger.debug("#{i}: #{druid}")
           Docile.dsl_eval(obj, &block).build
           report.success_count += 1
         else
+          logger.debug("#{i}: #{druid} : SKIPPED")
           report.skipped_count += 1
         end
       rescue => exception
-        handle_exception(druid: druid, exception: exception)
+        handle_exception(druid: druid, exception: exception, index: i)
       end
     end
   end
-  # rubocop:enable Metrics/MethodLength
+  # rubocop:enable Metrics/MethodLength,Metrics/AbcSize
 
   def condition(&block)
     if block_given?
@@ -77,10 +78,10 @@ class RemediationBuilder
     @logger ||= Logger.new(STDERR)
   end
 
-  def handle_exception(druid:, exception:)
+  def handle_exception(druid:, exception:, index:)
     raise exception unless handle_exceptions?
 
-    logger.error("#{druid}: #{exception}")
+    logger.error("#{index}: #{druid}: #{exception}")
     report.error_count += 1
   end
 
