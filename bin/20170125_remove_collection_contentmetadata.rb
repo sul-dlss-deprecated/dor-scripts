@@ -22,7 +22,7 @@ remediate do
   condition do |obj|
     obj.datastreams['hydrusProperties'] &&
       !obj.datastreams['contentMetadata'].nil? &&
-      Nokogiri::XML(obj.datastreams['contentMetadata'].content.to_s).root.children.length == 0
+      Nokogiri::XML(obj.datastreams['contentMetadata'].content.to_s).root.children.length.zero?
   end
 
   each_druid do

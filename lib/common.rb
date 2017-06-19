@@ -52,14 +52,26 @@ class RemediationBuilder
     end
   end
 
-  def druids
+  def with_druids(&block)
+    if block_given?
+      @with_druids = block
+    else
+      @with_druids
+    end
+  end
+
+  def druids(&block)
     return to_enum(:druids) unless block_given?
 
-    ARGF.each_line do |druid|
-      if druid =~ /^druid:/
-        yield druid.strip
-      else
-        yield "druid:#{druid.strip}"
+    if with_druids
+      with_druids.each(&block)
+    else
+      ARGF.each_line do |druid|
+        if druid =~ /^druid:/
+          yield druid.strip
+        else
+          yield "druid:#{druid.strip}"
+        end
       end
     end
   end
