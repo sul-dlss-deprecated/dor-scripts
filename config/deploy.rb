@@ -5,7 +5,7 @@ set :repo_url, 'https://github.com/sul-dlss/dor-scripts.git'
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
 
 # Default deploy_to directory is /var/www/my_app
-set :deploy_to, "/opt/app/dor_services/#{fetch(:application)}"
+set :deploy_to, '/opt/app/dor_services/dor-scripts'
 
 # Default value for :scm is :git
 # set :scm, :git
