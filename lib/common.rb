@@ -1,7 +1,10 @@
 require 'docile'
+require 'honeybadger'
 
 def remediate(&block)
   Docile.dsl_eval(RemediationBuilder.new, &block).build
+rescue exception
+  Honeybadger.notify(exception)
 end
 
 # Common remediation task DSL

@@ -17,3 +17,5 @@ group :deployment do
   gem 'capistrano-bundler'
   gem 'dlss-capistrano'
 end
+
+gem 'honeybadger'
