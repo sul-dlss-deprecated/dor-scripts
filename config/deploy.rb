@@ -32,7 +32,9 @@ set :log_level, :info
 # set :keep_releases, 5
 
 set :linked_dirs, %w(log vendor/bundle config/settings)
-set :linked_files, %w()
+set :linked_files, %w(config/honeybadger.yml)
 
 # update shared_configs before restarting app
 before 'deploy:symlink:release', 'shared_configs:symlink'
+
+set :honeybadger_env, fetch(:stage)
