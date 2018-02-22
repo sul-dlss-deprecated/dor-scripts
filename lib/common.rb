@@ -59,7 +59,7 @@ class RemediationBuilder
     if block_given?
       @with_druids = block
     else
-      @with_druids
+      @with_druids.call
     end
   end
 
