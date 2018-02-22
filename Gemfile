@@ -7,6 +7,7 @@ gem 'dor-services'
 gem 'workflow-archiver', '~> 2.0'
 
 gem 'rake'
+gem 'net-http-persistent', '~> 2.9'
 
 group :test do
   gem 'rubocop', '~> 0.47'
