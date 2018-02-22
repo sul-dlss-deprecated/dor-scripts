@@ -9,7 +9,7 @@ gem 'workflow-archiver', '~> 2.0'
 gem 'rake'
 
 group :test do
-  gem 'rubocop', '0.47.1'
+  gem 'rubocop', '~> 0.47'
 end
 
 group :deployment do
