@@ -3,7 +3,7 @@ require 'honeybadger'
 
 def remediate(&block)
   Docile.dsl_eval(RemediationBuilder.new, &block).build
-rescue exception
+rescue => exception
   Honeybadger.notify(exception)
 end
 
