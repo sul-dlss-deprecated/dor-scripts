@@ -26,7 +26,6 @@ class RemediationBuilder
     @verbose = true
   end
 
-  # rubocop:disable Metrics/MethodLength,Metrics/AbcSize
   def each_druid(&block)
     druids.each_with_index do |druid, i|
       begin
@@ -45,7 +44,6 @@ class RemediationBuilder
       end
     end
   end
-  # rubocop:enable Metrics/MethodLength,Metrics/AbcSize
 
   def condition(&block)
     if block_given?
