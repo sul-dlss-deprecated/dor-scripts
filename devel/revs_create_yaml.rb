@@ -17,6 +17,7 @@ require 'yaml'
 require File.expand_path(File.dirname(__FILE__) + '/../config/boot')
 
 raise "Incorrect N of arguments." if ARGV.size != 1
+
 input = ARGV[0]
 
 puts "revs_create_yaml"

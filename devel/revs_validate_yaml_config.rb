@@ -52,6 +52,7 @@ if File.directory?(input)
           d = PreAssembly::Remediation::Item.new(set_druid_id)
           d.get_object
           raise unless [:set, :collection].include? d.object_type
+
           collection_names << d.fobj.label
         end
       end
