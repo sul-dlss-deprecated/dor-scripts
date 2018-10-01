@@ -130,6 +130,7 @@ class ObjectBuilder
     return unless Dor::Config.workflow.client.get_lifecycle('dor', pid, 'accessioned')
     return if object.new_version_open?
     return if Dor::Config.workflow.client.get_active_lifecycle('dor', pid, 'submitted')
+
     object.open_new_version(*args)
     @opened = true
   end

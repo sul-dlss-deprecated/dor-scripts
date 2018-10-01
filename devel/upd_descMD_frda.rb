@@ -140,6 +140,7 @@ def main() # Iterate over file of pid/druids to change
     if doc.xpath('//contentMetadata/resource/file[@id="descMetadata.xml"]').length == 1
       nodes = doc.xpath('//contentMetadata/resource/file[@id="descMetadata.xml"]')
       raise "Warning! found more or less than 1 file node with id descMetadata.xml" unless nodes.size == 1
+
       nodes.first.parent.remove
       doc = Nokogiri.XML(doc.to_xml, &:noblanks)
       obj.datastreams['contentMetadata'].content = doc.to_xml
