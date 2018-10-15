@@ -128,7 +128,7 @@ GEM
       activesupport (>= 3.0, < 6.0)
     equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
-    faraday (0.15.2)
+    faraday (0.15.3)
       multipart-post (>= 1.2, < 3)
     haml (4.0.7)
       tilt
@@ -138,7 +138,7 @@ GEM
     htmlentities (4.3.4)
     http-cookie (1.0.3)
       domain_name (~> 0.5)
-    i18n (1.1.0)
+    i18n (1.1.1)
       concurrent-ruby (~> 1.0)
     iso-639 (0.2.8)
     jaro_winkler (1.5.1)
@@ -171,7 +171,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (5.0.2)
     netrc (0.11.0)
-    nokogiri (1.8.4)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     nokogiri-happymapper (0.8.0)
       nokogiri (~> 1.5)
@@ -237,7 +237,7 @@ GEM
       mime-types
       nokogiri
       rest-client
-    sequel (5.12.0)
+    sequel (5.13.0)
     solrizer (3.4.1)
       activesupport
       daemons
