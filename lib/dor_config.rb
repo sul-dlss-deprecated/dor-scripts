@@ -103,10 +103,3 @@ Dor.configure do
     base_sleep_seconds Settings.GOOBI.BASE_SLEEP_SECONDS # base sleep seconds between tries
   end
 end
-
-Dor::WorkflowArchiver.config.configure do
-  db_login    Settings.WORKFLOW_ARCHIVER.USER
-  db_password Settings.WORKFLOW_ARCHIVER.PASSWORD
-  db_uri      Settings.WORKFLOW_ARCHIVER.URI
-  dor_service_uri Settings.DOR_SERVICES_URL
-end
