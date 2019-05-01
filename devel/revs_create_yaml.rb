@@ -14,7 +14,7 @@ ARCHIVE_DRUIDS = { :revs => 'druid:nt028fd5773', :roadandtrack => 'druid:mr163sv
 yaml_template = '/dor/staging/Revs/revs_template_preassembly_yaml_file.yaml' # the template file to copy from
 
 require 'yaml'
-require File.expand_path(File.dirname(__FILE__) + '/../config/boot')
+require File.expand_path(File.dirname(__FILE__) + '/../boot')
 
 raise "Incorrect N of arguments." if ARGV.size != 1
 

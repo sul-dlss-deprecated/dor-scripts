@@ -9,7 +9,7 @@
 help "Incorrect N of arguments." if ARGV.size != 1
 input = ARGV[0]
 
-require File.expand_path(File.dirname(__FILE__) + '/../config/boot')
+require File.expand_path(File.dirname(__FILE__) + '/../boot')
 
 puts ''
 

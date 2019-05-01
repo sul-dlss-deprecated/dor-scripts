@@ -21,7 +21,7 @@ def old_druid_tree_path(druid, root_dir)
   Assembly::Utils.get_staging_path(druid, root_dir)
 end
 
-require File.expand_path(File.dirname(__FILE__) + '/../config/boot')
+require File.expand_path(File.dirname(__FILE__) + '/../boot')
 
 require 'pp'
 require 'rubygems'

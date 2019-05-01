@@ -10,7 +10,7 @@
 help "Incorrect N of arguments." if ARGV.size != 1
 csv_in = ARGV[0]
 
-require File.expand_path(File.dirname(__FILE__) + '/../config/boot')
+require File.expand_path(File.dirname(__FILE__) + '/../boot')
 require 'csv'
 require 'csv-mapper'
 include CsvMapper

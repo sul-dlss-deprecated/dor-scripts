@@ -21,7 +21,7 @@
 # if you set the --exact-match switch, then only files which match exactly (but not case sensitive) will be found; the normal finding algorithm allows for also matching files that have any number of leading 0s
 #                file extensions do not matter when matching
 
-require File.expand_path(File.dirname(__FILE__) + '/../config/boot')
+require File.expand_path(File.dirname(__FILE__) + '/../boot')
 require 'optparse'
 require 'pathname'
 

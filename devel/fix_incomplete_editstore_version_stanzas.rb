@@ -1,5 +1,5 @@
 #! /usr/bin/env ruby
-require File.expand_path(File.dirname(__FILE__) + '/../config/boot')
+require File.expand_path(File.dirname(__FILE__) + '/../boot')
 
 # If you have a spreadsheet that has all dor-versions and sdr-versions filled in, run with:
 # ROBOT_ENVIRONMENT=test devel/fix_incomplete_edistore_version_stanzas.rb PATH_TO_CSV_OF_DRUIDS

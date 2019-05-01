@@ -17,7 +17,7 @@ def metadata_folder(druid)
   File.join(path_to_object(druid), 'metadata')
 end
 
-require File.expand_path(File.dirname(__FILE__) + '/../config/boot')
+require File.expand_path(File.dirname(__FILE__) + '/../boot')
 
 require 'pp'
 require 'rubygems'

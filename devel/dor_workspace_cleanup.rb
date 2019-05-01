@@ -7,7 +7,7 @@ ENV['ROBOT_ENVIRONMENT'] = 'production' # environment to run under (i.e. which f
 
 paths_to_cleanup = ['/dor/assembly', '/dor/workspace']
 
-require File.expand_path(File.dirname(__FILE__) + '/../config/boot')
+require File.expand_path(File.dirname(__FILE__) + '/../boot')
 
 abort "Incorrect N of arguments." unless ARGV.size == 1
 csv_in = ARGV[0]

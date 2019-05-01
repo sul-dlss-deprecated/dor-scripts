@@ -9,7 +9,7 @@ steps_to_fix = %w{submit-version start-accession}
 reference_workflow = 'accessionWF' # the workflow to check against to be sure it is completed
 reference_step = 'end-accession' # the step to look at
 
-require File.expand_path(File.dirname(__FILE__) + '/../config/boot')
+require File.expand_path(File.dirname(__FILE__) + '/../boot')
 
 abort "Incorrect N of arguments." unless ARGV.size == 1
 csv_in = ARGV[0]

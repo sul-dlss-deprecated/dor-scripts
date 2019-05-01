@@ -8,7 +8,7 @@ step = 'sdr-ingest-transfer' # the step to look at
 workflow_to_fix = 'accession2WF' # the workflow that needs its step set to completed from waiting
 reference_workflow = 'accessionWF' # the workflow to check against to be sure it is completed
 
-require File.expand_path(File.dirname(__FILE__) + '/../config/boot')
+require File.expand_path(File.dirname(__FILE__) + '/../boot')
 
 abort "Incorrect N of arguments." unless ARGV.size == 1
 csv_in = ARGV[0]
