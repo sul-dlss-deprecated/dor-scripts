@@ -5,7 +5,7 @@ ENV['ROBOT_ENVIRONMENT'] = 'test' # environment to run under (i.e. which fedora 
 
 ENABLE_SOLR_UPDATES = false
 
-require File.expand_path(File.dirname(__FILE__) + '/../config/boot')
+require File.expand_path(File.dirname(__FILE__) + '/../boot')
 
 require 'rubygems'
 require 'dor-services'

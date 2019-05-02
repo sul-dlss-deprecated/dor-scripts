@@ -16,7 +16,7 @@
 #   ruby download_object.rb oo000oo0001 ~/Desktop
 
 require 'open-uri'
-require File.expand_path(File.dirname(__FILE__) + '/../config/boot')
+require File.expand_path(File.dirname(__FILE__) + '/../boot')
 
 def help(error_msg)
   abort "#{error_msg}\n\nUsage:\n    download_object DRUID [SAVE_LOCATION]\n"

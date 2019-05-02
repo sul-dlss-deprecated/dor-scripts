@@ -5,7 +5,9 @@ Bundler.require(:default)
 
 require 'optparse'
 
-Config.load_and_set_settings(Config.setting_files(File.expand_path('config', __dir__), ENV['ENV']))
+# either environment variable config is ok for backwards compatibility with robot environment setting format
+environment = ENV['ENV'] || ENV['ROBOT_ENVIRONMENT']
+Config.load_and_set_settings(Config.setting_files(File.expand_path('config', __dir__), environment))
 
 require_relative 'lib/common.rb'
 require_relative 'lib/dor_config.rb'

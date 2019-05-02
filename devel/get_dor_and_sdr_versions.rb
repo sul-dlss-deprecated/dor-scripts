@@ -3,7 +3,7 @@
 #  Peter Mangiafico July 2016
 
 # ! /usr/bin/env ruby
-require File.expand_path(File.dirname(__FILE__) + '/../config/boot')
+require File.expand_path(File.dirname(__FILE__) + '/../boot')
 
 # Run with
 # ROBOT_ENVIRONMENT=test devel/FILENAME fetcher-service-url apo-druid sdr-url sdr-user-name sdr-password

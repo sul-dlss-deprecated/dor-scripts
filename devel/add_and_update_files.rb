@@ -8,7 +8,7 @@
 # !/usr/bin/env ruby
 ENV['ROBOT_ENVIRONMENT'] = 'production' # environment to run under (i.e. which fedora instance to hit)
 
-require File.expand_path(File.dirname(__FILE__) + '/../config/boot')
+require File.expand_path(File.dirname(__FILE__) + '/../boot')
 
 require 'rubygems'
 require 'dor-services'

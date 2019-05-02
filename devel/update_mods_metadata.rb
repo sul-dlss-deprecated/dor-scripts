@@ -27,7 +27,7 @@ mods_template_file = ARGV[1]
 abort "CSV file not found." unless File.file? csv_in
 abort "MODs template not found." unless File.file? mods_template_file
 
-require File.expand_path(File.dirname(__FILE__) + '/../config/boot')
+require File.expand_path(File.dirname(__FILE__) + '/../boot')
 require 'csv'
 
 remediate_logic_file = '/dor/preassembly/remediation/scripts/update_mods_remediation.rb' # the update mods remeditation class
