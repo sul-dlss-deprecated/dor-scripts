@@ -17,10 +17,13 @@ require 'rest-client'
 
 # LIKELY MISSING STEPS
 # TODO get publication data from google supplied metadata or from our our catalog
+#  e.g. can make a call to https://dor-services-XXX.stanford.edu/v1/catalog/mods?barcode=BARCODE_GOES_HERE
+#         and then parse the MODs to look for //originInfo/dateIssued
 # TODO set embargo metadata datastream correctly given publication date
 # TODO select correct APO/collection based on publication date (world vs none access)
 # TODO what to do about folders that do not look like barcodes?
 # TODO create any other derivative files needed (e.g. combined OCR .txt file)
+# TODO what to do about objects that fail to locate a catkey from the barcode lookup
 ###############################
 ## CONFIG
 # location of google books
@@ -127,9 +130,14 @@ CSV.open(progress_log_file, 'a+') do |csv|
       pid = Dor::SuriService.mint_id
       puts "...obtained #{pid}"
 
-      # lookup catkey given barcode
-      response = RestClient.get "#{catkey_lookup_url}?barcode=#{folder_name}"
-      catkey = (response.code == 200 ? response.body.strip : '')
+      # lookup catkey given barcode, note the the rest call actually returns a 500 if there is no result, so let's catch it
+      begin
+        response = RestClient.get "#{catkey_lookup_url}?barcode=#{folder_name}"
+        catkey = (response.code == 200 ? response.body.strip : '')
+      rescue StandardError => e
+        puts '*** WARNING, catkey lookup failed'
+        catkey = ''
+      end
 
       # register fedora object
       other_ids = { barcode: folder_name }
