@@ -1,5 +1,10 @@
 # dor-scripts
 
+From Peter on 2019-09-18:
+
+These scripts were copied from the legacy pre-assembly codebase, which is now on https://github.com/sul-dlss/lyberservices-scripts/ 
+Most of the scripts were old, possibly didn't work and were removed from the new location, but the ones that still exist should work and that is the only place they are being maintained.  
+
 per Ben on 2019-04-01:
 
 "I think these concerns were pulled out of the pre-assembly legacy code. this is the core of a remediation framework, so let’s not kill the repo yet because it’s useful for Peter, but my guess is if we ask this question again next year it can go bye bye".
