@@ -1,3 +1,5 @@
+# DEPRECATED
+
 # dor-scripts
 
 From Peter on 2019-09-18:
