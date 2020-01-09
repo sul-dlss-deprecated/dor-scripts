@@ -4,6 +4,7 @@ gem 'config'
 gem 'docile'
 
 gem 'dor-services'
+gem 'assembly-objectfile'
 
 gem 'rake'
 gem 'net-http-persistent', '~> 2.9'
